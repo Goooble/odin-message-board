@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Goooble/odin-basic-info#readme",
   "dependencies": {
     "dotenv": "^17.2.0",
+    "ejs": "^3.1.10",
     "express": "^5.1.0",
     "prettier": "^3.6.2",
     "prettier-eslint": "^16.4.2"
