@@ -1,14 +1,11 @@
 import { Router } from "express";
-
+import sendMessage from "../controller/sendMessage.js";
 const newMessageRouter = Router();
 
-newMessageRouter.get("/", (req, res) => {
+newMessageRouter.get("", (req, res) => {
   res.render("form");
 });
 
-newMessageRouter.post("/", (req, res) => {
-  console.log(req.body);
-  res.send("message received");
-});
+newMessageRouter.post("", sendMessage);
 
 export default newMessageRouter;

@@ -4,7 +4,7 @@ import "dotenv/config";
 
 // import newMessageRouter from "./routes/newMessageRouter.js"; //cant do this as i cannot access messages
 import indexRouter from "./routes/indexRouter.js";
-
+import newMessageRouter from "./routes/newMessageRouter.js";
 
 
 const messages = [
@@ -19,8 +19,6 @@ const messages = [
     added: new Date()
   }
 ];
-
-
 const PORT = parseInt(process.env.PORT) || 8000;
 const app = express();
 
@@ -31,15 +29,11 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-app.get("/new", (req, res) => {
-  res.render("form");
-});
+// app.get("/new", (req, res) => {
+//   res.render("form");
+// });
 
-app.post("/new", (req, res) => {
-  console.log(req.body);
-  messages.push({...req.body, added: new Date() });
-  res.redirect("/");
-});
+app.use("/new", newMessageRouter);
 
 app.get("/open/:id", (req,res)=>{
   res.render("message", {message: messages[req.params.id]});
@@ -47,10 +41,10 @@ app.get("/open/:id", (req,res)=>{
 
 
 
-app.use('/', (req, res, next)=>{ //middleware to add messages to res.locals
-  res.locals.messages = messages;
-  next();
-})
+// app.use('/', (req, res, next)=>{ //middleware to add messages to res.locals
+//   res.locals.messages = messages;
+//   next();
+// })
 app.use('/', indexRouter)
 
 
